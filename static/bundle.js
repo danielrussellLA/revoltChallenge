@@ -20193,7 +20193,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -20223,27 +20223,27 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var TimeLine = function (_React$Component) {
-		_inherits(TimeLine, _React$Component);
+	  _inherits(TimeLine, _React$Component);
 
-		function TimeLine() {
-			_classCallCheck(this, TimeLine);
+	  function TimeLine() {
+	    _classCallCheck(this, TimeLine);
 
-			return _possibleConstructorReturn(this, Object.getPrototypeOf(TimeLine).apply(this, arguments));
-		}
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(TimeLine).apply(this, arguments));
+	  }
 
-		_createClass(TimeLine, [{
-			key: 'render',
-			value: function render() {
-				return _react2.default.createElement(
-					'div',
-					{ className: 'TimeLine' },
-					_react2.default.createElement(_Times2.default, null),
-					_react2.default.createElement(_Event2.default, null)
-				);
-			}
-		}]);
+	  _createClass(TimeLine, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'TimeLine' },
+	        _react2.default.createElement(_Times2.default, null),
+	        _react2.default.createElement(_Event2.default, null)
+	      );
+	    }
+	  }]);
 
-		return TimeLine;
+	  return TimeLine;
 	}(_react2.default.Component);
 
 	exports.default = TimeLine;
@@ -20255,7 +20255,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -20277,206 +20277,206 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var Event = function (_React$Component) {
-		_inherits(Event, _React$Component);
+	  _inherits(Event, _React$Component);
 
-		function Event(props) {
-			_classCallCheck(this, Event);
+	  function Event(props) {
+	    _classCallCheck(this, Event);
 
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Event).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Event).call(this, props));
 
-			_this.state = { events: [], timeLine: [], overlaps: 0 };
-			// populateTimeLine with 720 arrays - each array represents a minute within the 12 hour time span of our timeline
-			_this.populateTimeLine();
-			// on init, get events in db
-			_this.fetchEvents();
-			return _this;
-		}
+	    _this.state = { events: [], timeLine: [], overlaps: 0 };
+	    // populateTimeLine with 720 arrays - each array represents a minute within the 12 hour time span of our timeline
+	    _this.populateTimeLine();
+	    // on init, get events in db
+	    _this.fetchEvents();
+	    return _this;
+	  }
 
-		_createClass(Event, [{
-			key: 'fetchEvents',
-			value: function fetchEvents() {
-				// hack - to preserve this binding inside .then
-				var that = this;
-				_axios2.default.get('/event').then(function (res) {
-					that.setState({ events: res.data.events });
-					// sort events in case data on backend is unorganized. Could (should?) possibly move this to the backend
-					that.sortEvents();
-					// arrange events in a 2d grid to help with all conflict/horizontal index caluclations
-					that.arrangeEventsOnTimeLine();
-					// find all conflicts on the timeline and populate events with number of conflicts
-					that.getEventConflicts();
-					// calculate each events' horizontal index based on their number of conflicts
-					that.getHorizontalIdx();
-					// re-calculate each events' conflicts to match the highest number of conflictts occuring in conflicting events
-					that.formatConflicts();
-				}).catch(function (res) {
-					console.log('Error in getting events');
-				});
-			}
-		}, {
-			key: 'populateTimeLine',
-			value: function populateTimeLine() {
-				var timeLineLength = this.state.timeLine.length;
-				var timeLine = [];
-				for (var i = 0; i < 720; i++) {
-					this.state.timeLine.push([]);
-				}
-			}
-		}, {
-			key: 'arrangeEventsOnTimeLine',
-			value: function arrangeEventsOnTimeLine() {
-				var eventsLength = this.state.events.length;
-				for (var i = 0; i < eventsLength; i++) {
-					var event = this.state.events[i];
-					var eventStartTime = this.convertTimeToMins(event.startTime);
-					var eventEndTime = this.convertTimeToMins(event.endTime);
+	  _createClass(Event, [{
+	    key: 'fetchEvents',
+	    value: function fetchEvents() {
+	      // hack - to preserve this binding inside .then
+	      var that = this;
+	      _axios2.default.get('/event').then(function (res) {
+	        that.setState({ events: res.data.events });
+	        // sort events in case data on backend is unorganized. Could (should?) possibly move this to the backend
+	        that.sortEvents();
+	        // arrange events in a 2d grid to help with all conflict/horizontal index caluclations
+	        that.arrangeEventsOnTimeLine();
+	        // find all conflicts on the timeline and populate events with number of conflicts
+	        that.getEventConflicts();
+	        // calculate each events' horizontal index based on their number of conflicts
+	        that.getHorizontalIdx();
+	        // re-calculate each events' conflicts to match the highest number of conflictts occuring in conflicting events
+	        that.formatConflicts();
+	      }).catch(function (res) {
+	        console.log('Error in getting events');
+	      });
+	    }
+	  }, {
+	    key: 'populateTimeLine',
+	    value: function populateTimeLine() {
+	      var timeLineLength = this.state.timeLine.length;
+	      var timeLine = [];
+	      for (var i = 0; i < 720; i++) {
+	        this.state.timeLine.push([]);
+	      }
+	    }
+	  }, {
+	    key: 'arrangeEventsOnTimeLine',
+	    value: function arrangeEventsOnTimeLine() {
+	      var eventsLength = this.state.events.length;
+	      for (var i = 0; i < eventsLength; i++) {
+	        var event = this.state.events[i];
+	        var eventStartTime = this.convertTimeToMins(event.startTime);
+	        var eventEndTime = this.convertTimeToMins(event.endTime);
 
-					for (var j = eventStartTime; j < eventEndTime; j++) {
-						// store event objects in each minute on the timeline so that we can calculate relations between events
-						// and manipulate events' data
-						this.state.timeLine[j].push(event);
-					}
-				}
-			}
-		}, {
-			key: 'getEventConflicts',
-			value: function getEventConflicts() {
-				for (var i = 0; i < 720; i++) {
-					var timeSlotLength = this.state.timeLine[i].length;
-					// If there's at least one event in the timeslot, loop through events
-					if (timeSlotLength > 0) {
-						// store the greatest concurrent conflicts for each event
-						for (var j = 0; j < timeSlotLength; j++) {
-							var event = this.state.events[this.state.timeLine[i][j].id - 1];
-							if (!event.conflicts || event.conflicts < timeSlotLength) {
-								event.conflicts = timeSlotLength;
-							}
-						}
-					}
-				}
-			}
-		}, {
-			key: 'formatConflicts',
-			value: function formatConflicts() {
-				var timeLineLength = this.state.timeLine.length;
-				var greatestConflictAmt = 1;
-				// loop through timeline and find the greatest amount of conflicts among conflicting events
-				for (var i = 0; i < timeLineLength; i++) {
-					for (var j = 0; j < this.state.timeLine[i].length; j++) {
-						if (this.state.timeLine[i][j].conflicts > greatestConflictAmt) {
-							greatestConflictAmt = this.state.timeLine[i][j].conflicts;
-						}
-					}
-					// loop through minute & change event's conflicts to match the greatest number
-					// of conflicts in its conflicting event(s) so that Each event’s width will
-					// be equal to that of all events that it overlaps
-					for (var x = 0; x < this.state.timeLine[i].length; x++) {
-						this.state.timeLine[i][x].conflicts = greatestConflictAmt;
-					}
-					greatestConflictAmt = 1;
-				}
-				// force update ensures the state variables are updated with current info from this algorithm
-				this.forceUpdate();
-			}
-		}, {
-			key: 'getHorizontalIdx',
-			value: function getHorizontalIdx() {
-				var timeLineLength = this.state.timeLine.length;
-				for (var i = 0; i < timeLineLength; i++) {
-					for (var j = 0; j < this.state.timeLine[i].length; j++) {
-						for (var x = 0; x < this.state.events.length; x++) {
-							// find matching event to the current event being looped over in timeline
-							if (this.state.events[x].id === this.state.timeLine[i][j].id) {
-								// if horizontalIdx is undefined, set it equal to the current index in the minute
-								if (this.state.events[x].horizontalIdx === undefined) {
-									this.state.events[x].horizontalIdx = j;
-								}
-								// if we are at the 2nd or above event in the minute, set the event's horizontalIdx to the
-								// previous event's horizontalIdx + 1
-								if (j > 0) {
-									this.state.events[x].horizontalIdx = this.state.events[x - 1].horizontalIdx + 1;
-								}
-								// if the events horizontalIdx is equal to its # of conflicts, set horizontalIdx to 0 for aesthetic reasons
-								if (this.state.events[x].horizontalIdx === this.state.events[x].conflicts) {
-									this.state.events[x].horizontalIdx = 0;
-								}
-								// if event's conflicting horizontalIdx is greater than the current event's horizontalIdx, set current's
-								// horizontalIdx to 0 for aesthetic reasons
-								if (this.state.timeLine[i][j - 1] && this.state.timeLine[i][j - 1].horizontalIdx > this.state.timeLine[i][j].horizontalIdx) {
-									this.state.events[x].horizontalIdx = 0;
-								}
-							}
-						}
-					}
-				}
-				// force update ensures the state variables are updated with current info from this algorithm
-				this.forceUpdate();
-			}
-		}, {
-			key: 'sortEvents',
-			value: function sortEvents() {
-				// sort events by time (earliest - latest) and give each event an unique id
-				var that = this;
-				var id = 1;
-				var sorted = this.state.events.sort(function (a, b) {
-					return that.convertTimeToMins(a.startTime) - that.convertTimeToMins(b.startTime);
-				});
-				sorted.forEach(function (event) {
-					event.id = id;
-					id++;
-				});
-				this.setState({ events: sorted });
-			}
-		}, {
-			key: 'convertTimeToMins',
-			value: function convertTimeToMins(time) {
-				// convert time from string format "HH:MM:SS" to mins
-				var splitTime = time.split(':');
-				var hours = parseInt(splitTime[0]);
-				var mins = parseInt(splitTime[1]);
+	        for (var j = eventStartTime; j < eventEndTime; j++) {
+	          // store event objects in each minute on the timeline so that we can calculate relations between events
+	          // and manipulate events' data
+	          this.state.timeLine[j].push(event);
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'getEventConflicts',
+	    value: function getEventConflicts() {
+	      for (var i = 0; i < 720; i++) {
+	        var timeSlotLength = this.state.timeLine[i].length;
+	        // If there's at least one event in the timeslot, loop through events
+	        if (timeSlotLength > 0) {
+	          // store the greatest concurrent conflicts for each event
+	          for (var j = 0; j < timeSlotLength; j++) {
+	            var event = this.state.events[this.state.timeLine[i][j].id - 1];
+	            if (!event.conflicts || event.conflicts < timeSlotLength) {
+	              event.conflicts = timeSlotLength;
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }, {
+	    key: 'formatConflicts',
+	    value: function formatConflicts() {
+	      var timeLineLength = this.state.timeLine.length;
+	      var greatestConflictAmt = 1;
+	      // loop through timeline and find the greatest amount of conflicts among conflicting events
+	      for (var i = 0; i < timeLineLength; i++) {
+	        for (var j = 0; j < this.state.timeLine[i].length; j++) {
+	          if (this.state.timeLine[i][j].conflicts > greatestConflictAmt) {
+	            greatestConflictAmt = this.state.timeLine[i][j].conflicts;
+	          }
+	        }
+	        // loop through minute & change event's conflicts to match the greatest number
+	        // of conflicts in its conflicting event(s) so that Each event’s width will
+	        // be equal to that of all events that it overlaps
+	        for (var x = 0; x < this.state.timeLine[i].length; x++) {
+	          this.state.timeLine[i][x].conflicts = greatestConflictAmt;
+	        }
+	        greatestConflictAmt = 1;
+	      }
+	      // force update ensures the state variables are updated with current info from this algorithm
+	      this.forceUpdate();
+	    }
+	  }, {
+	    key: 'getHorizontalIdx',
+	    value: function getHorizontalIdx() {
+	      var timeLineLength = this.state.timeLine.length;
+	      for (var i = 0; i < timeLineLength; i++) {
+	        for (var j = 0; j < this.state.timeLine[i].length; j++) {
+	          for (var x = 0; x < this.state.events.length; x++) {
+	            // find matching event to the current event being looped over in timeline
+	            if (this.state.events[x].id === this.state.timeLine[i][j].id) {
+	              // if horizontalIdx is undefined, set it equal to the current index in the minute
+	              if (this.state.events[x].horizontalIdx === undefined) {
+	                this.state.events[x].horizontalIdx = j;
+	              }
+	              // if we are at the 2nd or above event in the minute, set the event's horizontalIdx to the
+	              // previous event's horizontalIdx + 1
+	              if (j > 0) {
+	                this.state.events[x].horizontalIdx = this.state.events[x - 1].horizontalIdx + 1;
+	              }
+	              // if the events horizontalIdx is equal to its # of conflicts, set horizontalIdx to 0 for aesthetic reasons
+	              if (this.state.events[x].horizontalIdx === this.state.events[x].conflicts) {
+	                this.state.events[x].horizontalIdx = 0;
+	              }
+	              // if event's conflicting horizontalIdx is greater than the current event's horizontalIdx, set current's
+	              // horizontalIdx to 0 for aesthetic reasons
+	              if (this.state.timeLine[i][j - 1] && this.state.timeLine[i][j - 1].horizontalIdx > this.state.timeLine[i][j].horizontalIdx) {
+	                this.state.events[x].horizontalIdx = 0;
+	              }
+	            }
+	          }
+	        }
+	      }
+	      // force update ensures the state variables are updated with current info from this algorithm
+	      this.forceUpdate();
+	    }
+	  }, {
+	    key: 'sortEvents',
+	    value: function sortEvents() {
+	      // sort events by time (earliest - latest) and give each event an unique id
+	      var that = this;
+	      var id = 1;
+	      var sorted = this.state.events.sort(function (a, b) {
+	        return that.convertTimeToMins(a.startTime) - that.convertTimeToMins(b.startTime);
+	      });
+	      sorted.forEach(function (event) {
+	        event.id = id;
+	        id++;
+	      });
+	      this.setState({ events: sorted });
+	    }
+	  }, {
+	    key: 'convertTimeToMins',
+	    value: function convertTimeToMins(time) {
+	      // convert time from string format "HH:MM:SS" to mins
+	      var splitTime = time.split(':');
+	      var hours = parseInt(splitTime[0]);
+	      var mins = parseInt(splitTime[1]);
 
-				hours = hours - 9;
+	      hours = hours - 9;
 
-				var hoursInMins = 0;
-				for (var i = 0; i < hours; i++) {
-					hoursInMins += 60;
-				}
-				return hoursInMins + mins;
-			}
-		}, {
-			key: 'renderEvents',
-			value: function renderEvents() {
-				var _this2 = this;
+	      var hoursInMins = 0;
+	      for (var i = 0; i < hours; i++) {
+	        hoursInMins += 60;
+	      }
+	      return hoursInMins + mins;
+	    }
+	  }, {
+	    key: 'renderEvents',
+	    value: function renderEvents() {
+	      var _this2 = this;
 
-				// this is where the magic happens - we combine the calculations from all the above helper functions
-				// to render event divs to the page
-				var createEvent = function createEvent(event) {
-					event.height = _this2.convertTimeToMins(event.endTime) - _this2.convertTimeToMins(event.startTime);
-					event.width = 100 / event.conflicts;
-					event.yPos = _this2.convertTimeToMins(event.startTime) + 12;
-					event.xPos = event.horizontalIdx * event.width;
-					return _react2.default.createElement(
-						'div',
-						{ className: 'event', style: { width: event.width + "%", height: event.height + "px", top: event.yPos + "px", left: event.xPos + "%", background: "#" + Math.floor(Math.random() * 16777215).toString(16) } },
-						event.title,
-						event.startTime,
-						event.endTime
-					);
-				};
-				return _react2.default.createElement(
-					'div',
-					{ className: 'eventsContainer' },
-					this.state.events.map(createEvent)
-				);
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				return this.renderEvents();
-			}
-		}]);
+	      // this is where the magic happens - we combine the calculations from all the above helper functions
+	      // to render event divs to the page
+	      var createEvent = function createEvent(event) {
+	        event.height = _this2.convertTimeToMins(event.endTime) - _this2.convertTimeToMins(event.startTime);
+	        event.width = 100 / event.conflicts;
+	        event.yPos = _this2.convertTimeToMins(event.startTime) + 12;
+	        event.xPos = event.horizontalIdx * event.width;
+	        return _react2.default.createElement(
+	          'div',
+	          { className: 'event', style: { width: event.width + "%", height: event.height + "px", top: event.yPos + "px", left: event.xPos + "%", background: "#" + Math.floor(Math.random() * 16777215).toString(16) } },
+	          event.title,
+	          event.startTime,
+	          event.endTime
+	        );
+	      };
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'eventsContainer' },
+	        this.state.events.map(createEvent)
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return this.renderEvents();
+	    }
+	  }]);
 
-		return Event;
+	  return Event;
 	}(_react2.default.Component);
 
 	exports.default = Event;
@@ -21661,7 +21661,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
@@ -21683,53 +21683,53 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 	var Times = function (_React$Component) {
-		_inherits(Times, _React$Component);
+	  _inherits(Times, _React$Component);
 
-		function Times(props) {
-			_classCallCheck(this, Times);
+	  function Times(props) {
+	    _classCallCheck(this, Times);
 
-			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Times).call(this, props));
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Times).call(this, props));
 
-			_this.state = { times: [] };
-			// on init, fetch timeline from db
-			_this.fetchTimeLine();
-			return _this;
-		}
+	    _this.state = { times: [] };
+	    // on init, fetch timeline from db
+	    _this.fetchTimeLine();
+	    return _this;
+	  }
 
-		_createClass(Times, [{
-			key: 'fetchTimeLine',
-			value: function fetchTimeLine() {
-				var that = this;
-				_axios2.default.get('/timeLine').then(function (res) {
-					that.setState({ times: res.data.times });
-				}).catch(function (res) {
-					console.log('Error in getting times');
-				});
-			}
-		}, {
-			key: 'renderTimeline',
-			value: function renderTimeline() {
-				var createTimeLine = function createTimeLine(item) {
-					return _react2.default.createElement(
-						'li',
-						{ className: item.class },
-						item.time
-					);
-				};
-				return _react2.default.createElement(
-					'ul',
-					{ className: 'Times' },
-					this.state.times.map(createTimeLine)
-				);
-			}
-		}, {
-			key: 'render',
-			value: function render() {
-				return this.renderTimeline();
-			}
-		}]);
+	  _createClass(Times, [{
+	    key: 'fetchTimeLine',
+	    value: function fetchTimeLine() {
+	      var that = this;
+	      _axios2.default.get('/timeLine').then(function (res) {
+	        that.setState({ times: res.data.times });
+	      }).catch(function (res) {
+	        console.log('Error in getting times');
+	      });
+	    }
+	  }, {
+	    key: 'renderTimeline',
+	    value: function renderTimeline() {
+	      var createTimeLine = function createTimeLine(item) {
+	        return _react2.default.createElement(
+	          'li',
+	          { className: item.class },
+	          item.time
+	        );
+	      };
+	      return _react2.default.createElement(
+	        'ul',
+	        { className: 'Times' },
+	        this.state.times.map(createTimeLine)
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return this.renderTimeline();
+	    }
+	  }]);
 
-		return Times;
+	  return Times;
 	}(_react2.default.Component);
 
 	exports.default = Times;

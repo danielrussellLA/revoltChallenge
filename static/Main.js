@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import TimeLine from './Components/TimeLine.js'
 
 class Main extends React.Component{
-  render() {
+render() {
     return (
       <div>
         <TimeLine />

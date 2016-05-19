@@ -5,14 +5,14 @@ import axios from 'axios';
 
 
 class TimeLine extends React.Component {
-	render () {
-		return (
-			<div className="TimeLine">
-				<Times />
-				<Event />
-			</div>
-		)
-	}
+  render () {
+    return (
+      <div className="TimeLine">
+        <Times />
+        <Event />
+      </div>
+    )
+  }
 }
 
 export default TimeLine;
