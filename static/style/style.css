@@ -1,0 +1,52 @@
+* {
+	font-family: 'Lato', sans-serif;
+}
+
+html body{
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.Times {
+	list-style: none;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	width: 10px;
+	min-width: 80px;
+	text-align: right;
+	height: 100vh;
+}
+
+.Times li {
+	height: 30px;
+	padding-right: 5px;
+}
+
+.eventsContainer {
+	margin: 0;
+	display: inline-block;
+	width: 90%;
+	min-width: 800px;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 80px;
+	padding: 20px;
+}
+
+.event {
+	position: absolute;
+	background-color: dodgerblue;
+	color: white;
+}
+
+.hour {
+	color: black;
+	font-weight: bold;
+}
+
+.halfhour {
+	color: darkgrey;
+}
