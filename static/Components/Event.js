@@ -4,7 +4,7 @@ import axios from 'axios';
 class Event extends React.Component {
   constructor (props) {
     super(props);
-    this.state = { events: [], timeLine: [], overlaps: 0 };
+    this.state = { events: [], timeLine: [] };
     // populateTimeLine with 720 arrays - each array represents a minute within the 12 hour time span of our timeline
     this.populateTimeLine();
     // on init, get events in db

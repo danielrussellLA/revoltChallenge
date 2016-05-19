@@ -20284,7 +20284,7 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Event).call(this, props));
 
-	    _this.state = { events: [], timeLine: [], overlaps: 0 };
+	    _this.state = { events: [], timeLine: [] };
 	    // populateTimeLine with 720 arrays - each array represents a minute within the 12 hour time span of our timeline
 	    _this.populateTimeLine();
 	    // on init, get events in db
