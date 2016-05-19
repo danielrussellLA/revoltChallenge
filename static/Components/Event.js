@@ -41,6 +41,21 @@ class Event extends React.Component {
     }
   }
 
+  sortEvents () {
+    // sort events by time (earliest - latest) and give each event an unique id
+    let that = this;
+    let id = 1;
+    let sorted = this.state.events.sort(function(a, b){
+      return that.convertTimeToMins(a.startTime) - that.convertTimeToMins(b.startTime);
+    });
+    sorted.forEach(function (event) {
+      event.id = id;
+      id++;
+    });
+    this.setState({events: sorted});
+  }
+
+
   arrangeEventsOnTimeLine () {
     const eventsLength = this.state.events.length;
     for (let i = 0; i < eventsLength; i++) {
@@ -70,28 +85,6 @@ class Event extends React.Component {
         }
       }
     }
-  }
-
-  formatConflicts () {
-    const timeLineLength = this.state.timeLine.length;
-    let greatestConflictAmt = 1;
-    // loop through timeline and find the greatest amount of conflicts among conflicting events
-    for (let i = 0; i < timeLineLength; i++) {
-      for (let j = 0; j < this.state.timeLine[i].length; j++) {
-        if(this.state.timeLine[i][j].conflicts > greatestConflictAmt){
-          greatestConflictAmt = this.state.timeLine[i][j].conflicts;
-        }
-      }
-      // loop through minute & change event's conflicts to match the greatest number
-      // of conflicts in its conflicting event(s) so that Each event’s width will
-      // be equal to that of all events that it overlaps
-      for(let x = 0; x < this.state.timeLine[i].length; x++){
-        this.state.timeLine[i][x].conflicts = greatestConflictAmt;
-      }
-      greatestConflictAmt = 1;
-    }
-    // force update ensures the state variables are updated with current info from this algorithm
-    this.forceUpdate();
   }
 
   getHorizontalIdx () {
@@ -127,18 +120,26 @@ class Event extends React.Component {
     this.forceUpdate();
   }
 
-  sortEvents () {
-    // sort events by time (earliest - latest) and give each event an unique id
-    let that = this;
-    let id = 1;
-    let sorted = this.state.events.sort(function(a, b){
-      return that.convertTimeToMins(a.startTime) - that.convertTimeToMins(b.startTime);
-    });
-    sorted.forEach(function (event) {
-      event.id = id;
-      id++;
-    });
-    this.setState({events: sorted});
+  formatConflicts () {
+    const timeLineLength = this.state.timeLine.length;
+    let greatestConflictAmt = 1;
+    // loop through timeline and find the greatest amount of conflicts among conflicting events
+    for (let i = 0; i < timeLineLength; i++) {
+      for (let j = 0; j < this.state.timeLine[i].length; j++) {
+        if(this.state.timeLine[i][j].conflicts > greatestConflictAmt){
+          greatestConflictAmt = this.state.timeLine[i][j].conflicts;
+        }
+      }
+      // loop through minute & change event's conflicts to match the greatest number
+      // of conflicts in its conflicting event(s) so that Each event’s width will
+      // be equal to that of all events that it overlaps
+      for(let x = 0; x < this.state.timeLine[i].length; x++){
+        this.state.timeLine[i][x].conflicts = greatestConflictAmt;
+      }
+      greatestConflictAmt = 1;
+    }
+    // force update ensures the state variables are updated with current info from this algorithm
+    this.forceUpdate();
   }
 
   convertTimeToMins (time) {
