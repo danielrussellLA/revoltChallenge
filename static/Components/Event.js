@@ -11,6 +11,14 @@ class Event extends React.Component {
     this.fetchEvents();
   }
 
+  populateTimeLine () {
+    const timeLineLength = this.state.timeLine.length;
+    let timeLine = [];
+    for (let i = 0; i < 720; i++) {
+      this.state.timeLine.push([]);
+    }
+  }
+
   fetchEvents () {
   // hack - to preserve this binding inside .then
     let that = this;
@@ -31,14 +39,6 @@ class Event extends React.Component {
         .catch(function (res) {
           console.log('Error in getting events');
         });
-  }
-
-  populateTimeLine () {
-    const timeLineLength = this.state.timeLine.length;
-    let timeLine = [];
-    for (let i = 0; i < 720; i++) {
-      this.state.timeLine.push([]);
-    }
   }
 
   sortEvents () {

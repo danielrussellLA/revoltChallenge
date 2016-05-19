@@ -20293,6 +20293,15 @@
 	  }
 
 	  _createClass(Event, [{
+	    key: 'populateTimeLine',
+	    value: function populateTimeLine() {
+	      var timeLineLength = this.state.timeLine.length;
+	      var timeLine = [];
+	      for (var i = 0; i < 720; i++) {
+	        this.state.timeLine.push([]);
+	      }
+	    }
+	  }, {
 	    key: 'fetchEvents',
 	    value: function fetchEvents() {
 	      // hack - to preserve this binding inside .then
@@ -20312,15 +20321,6 @@
 	      }).catch(function (res) {
 	        console.log('Error in getting events');
 	      });
-	    }
-	  }, {
-	    key: 'populateTimeLine',
-	    value: function populateTimeLine() {
-	      var timeLineLength = this.state.timeLine.length;
-	      var timeLine = [];
-	      for (var i = 0; i < 720; i++) {
-	        this.state.timeLine.push([]);
-	      }
 	    }
 	  }, {
 	    key: 'sortEvents',
