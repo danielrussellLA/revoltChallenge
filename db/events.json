@@ -1,60 +1,60 @@
 {
-	"events": [
-		{
-			"startTime": "09:00:00",
-			"endTime": "09:30:00",
-			"title": "Senior JS Engineer Panel",
-			"description": "Talk to Sr. JS engineers!",
-			"address": "604 Arizona Ave, Santa Monica, CA 90401",
-			"type": "panel"
-		},
-		{
-			"startTime": "10:30:00",
-			"endTime": "12:00:00",
-			"title": "Senior JS Engineer Panel",
-			"description": "Talk to Sr. JS engineers!",
-			"address": "604 Arizona Ave, Santa Monica, CA 90401",
-			"type": "panel"
-		},
-		{
-			"startTime": "9:30:00",
-			"endTime": "11:00:00",
-			"title": "Meet & Greet",
-			"description": "Meet your new staff members",
-			"address": "604 Arizona Ave, Santa Monica, CA 90401",
-			"type": "party"
-		},
-		{
-			"startTime": "11:30:00",
-			"endTime": "13:00:00",
-			"title": "Will Smith Sings Karaoke",
-			"description": "Sing karaoke with singer/producer Will Smith",
-			"address": "604 Arizona Ave, Santa Monica, CA 90401",
-			"type": "performance"
-		},
-		{
-			"startTime": "11:00:00",
-			"endTime": "17:30:00",
-			"title": "Bill Gates - The Future of The Internet",
-			"description": "Listen to Bill gates discuss the state of the global Internet",
-			"address": "604 Arizona Ave, Santa Monica, CA 90401",
-			"type": "speaker"
-		},
-		{
-			"startTime": "14:00:00",
-			"endTime": "16:00:00",
-			"title": "Afterparty",
-			"description": "Network with some of the biggest players in the music industry!",
-			"address": "604 Arizona Ave, Santa Monica, CA 90401",
-			"type": "party"
-		},
-		{
-			"startTime": "19:30:00",
-			"endTime": "21:00:00",
-			"title": "Late Night",
-			"description": "Network with some of the biggest players in the music industry!",
-			"address": "604 Arizona Ave, Santa Monica, CA 90401",
-			"type": "party"
-		}
-	]
+  "events": [
+    {
+      "startTime": "09:00:00",
+      "endTime": "09:30:00",
+      "title": "Senior JS Engineer Panel",
+      "description": "Talk to Sr. JS engineers!",
+      "address": "604 Arizona Ave, Santa Monica, CA 90401",
+      "type": "panel"
+    },
+    {
+      "startTime": "10:30:00",
+      "endTime": "12:00:00",
+      "title": "Senior JS Engineer Panel",
+      "description": "Talk to Sr. JS engineers!",
+      "address": "604 Arizona Ave, Santa Monica, CA 90401",
+      "type": "panel"
+    },
+    {
+      "startTime": "9:30:00",
+      "endTime": "11:00:00",
+      "title": "Meet & Greet",
+      "description": "Meet your new staff members",
+      "address": "604 Arizona Ave, Santa Monica, CA 90401",
+      "type": "party"
+    },
+    {
+      "startTime": "11:30:00",
+      "endTime": "13:00:00",
+      "title": "Will Smith Sings Karaoke",
+      "description": "Sing karaoke with singer/producer Will Smith",
+      "address": "604 Arizona Ave, Santa Monica, CA 90401",
+      "type": "performance"
+    },
+    {
+      "startTime": "11:00:00",
+      "endTime": "17:30:00",
+      "title": "Bill Gates - The Future of The Internet",
+      "description": "Listen to Bill gates discuss the state of the global Internet",
+      "address": "604 Arizona Ave, Santa Monica, CA 90401",
+      "type": "speaker"
+    },
+    {
+      "startTime": "14:00:00",
+      "endTime": "16:00:00",
+      "title": "Afterparty",
+      "description": "Network with some of the biggest players in the music industry!",
+      "address": "604 Arizona Ave, Santa Monica, CA 90401",
+      "type": "party"
+    },
+    {
+      "startTime": "19:30:00",
+      "endTime": "21:00:00",
+      "title": "Late Night",
+      "description": "Network with some of the biggest players in the music industry!",
+      "address": "604 Arizona Ave, Santa Monica, CA 90401",
+      "type": "party"
+    }
+  ]
 }
