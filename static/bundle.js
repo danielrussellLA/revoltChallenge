@@ -20459,7 +20459,9 @@
 	          'div',
 	          { className: 'event', style: { width: event.width + "%", height: event.height + "px", top: event.yPos + "px", left: event.xPos + "%", background: "#" + Math.floor(Math.random() * 16777215).toString(16) } },
 	          event.title,
+	          ' ',
 	          event.startTime,
+	          '-',
 	          event.endTime
 	        );
 	      };

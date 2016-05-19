@@ -165,7 +165,7 @@ class Event extends React.Component {
       event.width = 100 / event.conflicts;
       event.yPos = this.convertTimeToMins(event.startTime) + 12;
       event.xPos = event.horizontalIdx * event.width;
-      return <div className="event" style={{width: event.width + "%", height: event.height + "px", top: event.yPos + "px", left: event.xPos + "%", background: "#"+Math.floor(Math.random()*16777215).toString(16)}}>{event.title}{event.startTime}{event.endTime}</div>
+      return <div className="event" style={{width: event.width + "%", height: event.height + "px", top: event.yPos + "px", left: event.xPos + "%", background: "#"+Math.floor(Math.random()*16777215).toString(16)}}>{event.title} {event.startTime}-{event.endTime}</div>
     };
     return <div className="eventsContainer">{this.state.events.map(createEvent)}</div>
   }
